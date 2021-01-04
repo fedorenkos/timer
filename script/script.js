@@ -20,16 +20,19 @@ function countTimer(deadline){
 
     function updateClock(){
         let timer = getTimeRemaining();
-            timerHours.textContent = timer.hours;
-            timerMinutes.textContent = timer.minutes;
-            timerSeconds.textContent = timer.seconds;
+            timerHours.textContent = ('0' + timer.hours).slice(-2);
+            timerMinutes.textContent = ('0' + timer.minutes).slice(-2);
+            timerSeconds.textContent = ('0' + timer.seconds).slice(-2);
 
         if (timer.timeRemaining > 0) {
             setTimeout(updateClock, 1000);
-        }
+        } 
+
     }
     updateClock();
 }
-    countTimer('7 january 2021');
+    countTimer('5 january 2021');
     
 });
+
+
