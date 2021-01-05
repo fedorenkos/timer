@@ -17,27 +17,25 @@ function countTimer(deadline){
             hours = Math.floor(timeRemaining / 60 / 60);
             return {timeRemaining, hours, minutes, seconds};
     }
-
+    let total = setInterval(updateClock, 1000);
     function updateClock(){
         let timer = getTimeRemaining();
+
+        if (timer.timeRemaining > 0) {
             timerHours.textContent = ('0' + timer.hours).slice(-2);
             timerMinutes.textContent = ('0' + timer.minutes).slice(-2);
             timerSeconds.textContent = ('0' + timer.seconds).slice(-2);
-        
-        let total = setInterval(updateClock, 1000);
-
-        if (timer.timeRemaining > 0) {
-            setTimeout(updateClock, 1000);
-        } 
-        if (timer.timeRemaining <= 0){
+        } else if (timer.timeRemaining <= 0){
+            timerHours.textContent = ('00');
+            timerMinutes.textContent = ('00');
+            timerSeconds.textContent = ('00');
+        }else{
             clearInterval(total);
-            return true;
         }
-        
     }
     updateClock();
 }
-    countTimer('3 january 2021' );
+    countTimer('5 january 2021' );
     
 });
 
