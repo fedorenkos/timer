@@ -29,13 +29,12 @@ function countTimer(deadline){
             timerHours.textContent = ('00');
             timerMinutes.textContent = ('00');
             timerSeconds.textContent = ('00');
-        }else{
             clearInterval(total);
         }
     }
     updateClock();
 }
-    countTimer('5 january 2021' );
+    countTimer('7 january 2021' );
     
 });
 
