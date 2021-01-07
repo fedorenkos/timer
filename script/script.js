@@ -35,7 +35,86 @@ function countTimer(deadline){
     updateClock();
 }
     countTimer('7 january 2021' );
-    
-});
+// menu
 
+const toggleMenu = () => {
+    const btnMenu = document.querySelector('.menu'),
+    menu =  document.querySelector('menu'),
+    closeBtn = document.querySelector('.close-btn'),
+    menuItems = menu.querySelectorAll('ul>li');
+
+
+    const actionMenu = () =>{
+        menu.classList.toggle('active-menu');
+        // if(!menu.style.transform || menu.style.transform === `translate(-100%)`){
+        //     menu.style.transform = `translate(0)`;
+        // }else{
+        //     menu.style.transform = `translate(-100%)`;
+        // }
+    };
+    btnMenu.addEventListener('click', actionMenu);
+    closeBtn.addEventListener('click', actionMenu);
+
+    
+    menuItems.forEach((elem) => elem.addEventListener('click', actionMenu));
+}
+toggleMenu();
+
+// popup
+const togglePopUp = () => {
+    const popup = document.querySelector('.popup'),
+    popupBtn = document.querySelectorAll('.popup-btn'),
+    popupClose = document.querySelector('.popup-close'),
+    popupContent = document.querySelector('.popup-content'); 
+    
+    
+    popupBtn.forEach((elem) =>{
+        elem.addEventListener('click', () => {
+            popup.style.display = 'block';
+        });
+    });
+    popupClose.addEventListener('click', () =>{
+        popup.style.display = 'none';
+    });
+
+    // animate popup
+    function animate({timing, draw, duration}) {
+
+        let start = performance.now();
+    
+        requestAnimationFrame(function animate(time) {
+        // timeFraction изменяется от 0 до 1
+        let timeFraction = (time - start) / duration;
+        if (timeFraction >= 1) timeFraction = 1;
+    
+        // вычисление текущего состояния анимации
+        let progress = timing(timeFraction);
+    
+        draw(progress); // отрисовать её
+    
+        if (timeFraction < 1) {
+            requestAnimationFrame(animate);
+        }
+    
+        });
+    }
+    
+    animate({
+        duration: 1000,
+        timing: function(timeFraction) {
+            return Math.pow(timeFraction, 2)
+        },
+        draw: function(progress) {
+            popupContent.style.left = progress * 500 + 'px';
+        }
+    });
+    
+}
+
+togglePopUp();
+
+
+
+
+});
 
