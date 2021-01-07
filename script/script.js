@@ -71,6 +71,20 @@ const togglePopUp = () => {
     popupBtn.forEach((elem) =>{
         elem.addEventListener('click', () => {
             popup.style.display = 'block';
+            const domRect = popupContent.getBoundingClientRect();
+                if(domRect.width = 768 + 'px'){
+                    popupContent.style.left = progress * 0 + 'px';
+                }
+
+            animate({
+                duration: 5000,
+                timing: function(timeFraction) {
+                    return Math.pow(timeFraction, 2)
+                },
+                draw: function(progress) {
+                    popupContent.style.left = progress * 500 + 'px';
+                }
+            });
         });
     });
     popupClose.addEventListener('click', () =>{
@@ -99,22 +113,11 @@ const togglePopUp = () => {
         });
     }
     
-    animate({
-        duration: 1000,
-        timing: function(timeFraction) {
-            return Math.pow(timeFraction, 2)
-        },
-        draw: function(progress) {
-            popupContent.style.left = progress * 500 + 'px';
-        }
-    });
+   
     
 }
 
 togglePopUp();
-
-
-
 
 });
 
