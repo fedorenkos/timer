@@ -87,12 +87,6 @@ const togglePopUp = () => {
             
         });
     });
-    // window.addEventListener('resize', () => { 
-    //     if(window <= 768){
-    //         popupContent.style.left = '0px';
-    //     }
-    //     console.log(window);
-    //  });
     popupClose.addEventListener('click', () =>{
         popup.style.display = 'none';
     });
@@ -121,5 +115,36 @@ const togglePopUp = () => {
 
 togglePopUp();
 
-});
+
+
+// anchorMenuScroll
+
+const anchors = document.querySelectorAll('menu a[href*="#"]');
+
+anchors.forEach(function(item){
+        item.addEventListener('click', function(e){
+            e.preventDefault();
+            let anchorId = this.getAttribute('href');
+            document.querySelector(anchorId).scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+    });
+
+// прокрутка вниз, при клике на центральную кнопку
+
+    function scrollTo(e){
+        window.scroll({
+            left: 0,
+            top: e.offsetTop,
+            behavior: 'smooth'
+        })
+    }
+    const btnServiceBlock = document.querySelector('a [href*="#service-block"]');
+    const servBlock = document.querySelector('#service-block');
+        btnServiceBlock.addEventListener('click',() =>{
+            scrollTo(servBlock);
+        }); 
+    });
 
